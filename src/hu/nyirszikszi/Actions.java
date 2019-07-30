@@ -2,6 +2,7 @@ package hu.nyirszikszi;
 
 import java.io.RandomAccessFile;
 import java.nio.charset.StandardCharsets;
+import java.text.DecimalFormat;
 import java.util.*;
 
 class Actions {
@@ -13,11 +14,9 @@ class Actions {
             String row = raf.readLine();
             row = raf.readLine();
             String[] slice;
-            String utf;
 
             while (row != null) {
-                utf = new String(row.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
-                slice = utf.split(";");
+                slice = new String(row.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8).split(";");
 
                 list.add(new Hegyek(slice[0], slice[1], Integer.parseInt(slice[2])));
 
@@ -141,7 +140,41 @@ class Actions {
     }
 
     static String task9(ArrayList<Hegyek> list, String fileName) {
-        
+        ArrayList<String> results = new ArrayList<>();
+        DecimalFormat sub = new DecimalFormat("##.0");
+        double ftD;
+        int ftI;
+        String ft;
+
+        for (Hegyek hegyek : list) {
+            if (hegyek.getHegyseg().equals("Bükk-vidék")) {
+                ftD = hegyek.getMagassag() * 3.280839895;
+                ftI = (int)ftD;
+
+                if (sub.format((ftD - ftI)).equals(",0")) {
+                    results.add(hegyek.getHegycsucsNeve() + ";" + ftI);
+                }
+                else {
+                    ft = String.format("%.1f", ftD).replace(',', '.');
+                    results.add(hegyek.getHegycsucsNeve() + ";" + ft);
+                }
+            }
+        }
+
+        try {
+            RandomAccessFile raf = new RandomAccessFile(fileName, "rw");
+            raf.writeBytes(new String("Hegycsúcs neve;Magassáb láb\r\n".getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1));
+
+            for (String result : results) {
+                raf.writeBytes(new String(result.getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1) + "\r\n");
+            }
+
+            raf.close();
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
         return fileName;
     }
 }
