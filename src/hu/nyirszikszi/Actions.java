@@ -37,8 +37,8 @@ class Actions {
     }
 
     static String task4(ArrayList<Hegyek> list) {
-        double sum = 0;
-        double avg;
+        double sum = 0,
+               avg;
 
         for (Hegyek hegyek : list) {
             sum += hegyek.getMagassag();
@@ -51,8 +51,8 @@ class Actions {
 
     static String task5(ArrayList<Hegyek> list) {
         String result = "A legmamasabb hegycsúcs adatai:";
-        int index = 0;
-        int height = list.get(index).getMagassag();
+        int index = 0,
+            height = list.get(index).getMagassag();
 
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getMagassag() > height) {
@@ -74,6 +74,7 @@ class Actions {
         boolean isTrue = false;
 
         System.out.print("Kérek egy magasságot: ");
+
         try {
             int height = s.nextInt();
 
@@ -85,17 +86,17 @@ class Actions {
             }
 
             if (isTrue) {
-                result += "Van " + height + " m-nél";
+                result += "Van " + height;
             }
             else {
-                result += "Nincs " + height + " m-nél";
+                result += "Nincs " + height;
             }
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
-        return result + " magasabb hegycsúcs a Börzsönyben!";
+        return result + " m-nél magasabb hegycsúcs a Börzsönyben!";
     }
 
     static String task7(ArrayList<Hegyek> list) {
