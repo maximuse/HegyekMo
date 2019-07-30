@@ -1,34 +1,34 @@
 package hu.nyirszikszi;
 
 class Hegyek {
-    private String HegycsucsNeve;
-    private String Hegyseg;
-    private int Magassag;
+    private String hegycsucsNeve;
+    private String hegyseg;
+    private int magassag;
 
     Hegyek(String hegycsucsNeve, String hegyseg, int magassag) {
-        HegycsucsNeve = hegycsucsNeve;
-        Hegyseg = hegyseg;
-        Magassag = magassag;
+        this.hegycsucsNeve = hegycsucsNeve;
+        this.hegyseg = hegyseg;
+        this.magassag = magassag;
     }
 
     String getHegycsucsNeve() {
-        return HegycsucsNeve;
+        return hegycsucsNeve;
     }
 
     String getHegyseg() {
-        return Hegyseg;
+        return hegyseg;
     }
 
     int getMagassag() {
-        return Magassag;
+        return magassag;
     }
 
     @Override
     public String toString() {
         return "Hegyek{" +
-                "HegycsucsNeve='" + HegycsucsNeve + "'" +
-                ", Hegyseg='" + Hegyseg + "'" +
-                ", Magassag=" + Magassag +
+                "hegycsucsNeve='" + hegycsucsNeve + "'" +
+                ", hegyseg='" + hegyseg + "'" +
+                ", magassag=" + magassag +
                 "}\n";
     }
 }
